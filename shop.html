@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Browse AURUM's exquisite collections of luxury diamond rings, elegant gold pendants, handcrafted sapphire bands, earrings, bracelets, and bridal sets.">
+    <title>Collections | AURUM Fine Jewelry</title>
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Sticky Header -->
+    <header>
+        <div class="header-container">
+            <button class="mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+
+            <div class="logo">
+                <a href="index.html">AURUM<span>.</span></a>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Collections</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="admin.html" class="nav-link">Admin Portal</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="nav-action-btn" id="search-toggle" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="nav-action-btn" id="cart-toggle" aria-label="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="search-container" id="search-container">
+            <div class="search-inner">
+                <input type="text" class="search-input" id="search-input" placeholder="Search the collection...">
+                <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Title -->
+    <section class="section" style="padding-bottom: 2rem;">
+        <div class="section-header" style="margin-bottom: 0;">
+            <p class="section-subtitle">Exquisite Handcrafted Designs</p>
+            <h1 class="section-title">Our Collections</h1>
+        </div>
+    </section>
+
+    <!-- Shop Layout (Sidebar + Product Grid) -->
+    <section class="section" style="padding-top: 0;">
+        <div class="shop-layout">
+            <!-- Sidebar Filters -->
+            <aside class="shop-sidebar">
+                <!-- Search Input Widget -->
+                <div class="filter-widget">
+                    <h3 class="filter-title">Search</h3>
+                    <div style="position: relative;">
+                        <input type="text" id="sidebar-search" class="price-input" placeholder="Keyword..." style="padding-right: 2rem;">
+                        <i class="fa-solid fa-magnifying-glass" style="position: absolute; right: 0.8rem; top: 50%; transform: translateY(-50%); color: var(--color-text-muted); font-size: 0.85rem;"></i>
+                    </div>
+                </div>
+
+                <!-- Category Filter -->
+                <div class="filter-widget">
+                    <h3 class="filter-title">Categories</h3>
+                    <ul class="filter-list">
+                        <li>
+                            <label class="filter-checkbox-label">
+                                <input type="checkbox" class="filter-checkbox category-filter-chk" value="Rings">
+                                <span>Rings</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="filter-checkbox-label">
+                                <input type="checkbox" class="filter-checkbox category-filter-chk" value="Necklaces">
+                                <span>Necklaces</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="filter-checkbox-label">
+                                <input type="checkbox" class="filter-checkbox category-filter-chk" value="Earrings">
+                                <span>Earrings</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="filter-checkbox-label">
+                                <input type="checkbox" class="filter-checkbox category-filter-chk" value="Bracelets">
+                                <span>Bracelets</span>
+                            </label>
+                        </li>
+                        <li>
+                            <label class="filter-checkbox-label">
+                                <input type="checkbox" class="filter-checkbox category-filter-chk" value="Sets">
+                                <span>Sets</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Price Filter -->
+                <div class="filter-widget">
+                    <h3 class="filter-title">Filter by Price</h3>
+                    <div class="price-range-inputs">
+                        <input type="number" id="price-min" class="price-input" placeholder="Min $" min="0">
+                        <span style="color: var(--color-text-muted);">-</span>
+                        <input type="number" id="price-max" class="price-input" placeholder="Max $" min="0">
+                    </div>
+                </div>
+
+                <!-- Offers Filter -->
+                <div class="filter-widget">
+                    <h3 class="filter-title">Special Offers</h3>
+                    <ul class="filter-list">
+                        <li>
+                            <label class="filter-checkbox-label">
+                                <input type="checkbox" id="sale-filter-chk" class="filter-checkbox">
+                                <span>On Sale / Special Offers</span>
+                            </label>
+                        </li>
+                    </ul>
+                </div>
+                
+                <button class="btn-gold" id="clear-filters-btn" style="width: 100%; padding: 0.8rem 1rem; font-size: 0.75rem;">Clear All Filters</button>
+            </aside>
+
+            <!-- Main Shop Content Area -->
+            <main>
+                <!-- Shop Toolbar (Sorting + Results Display) -->
+                <div class="shop-toolbar">
+                    <span class="products-count-msg" id="products-count-msg">Showing 0 of 0 products</span>
+                    <div style="display: flex; align-items: center; gap: 1rem;">
+                        <span style="font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 500;">Sort By:</span>
+                        <select id="sort-select" class="sort-select">
+                            <option value="featured">Featured</option>
+                            <option value="price-asc">Price: Low to High</option>
+                            <option value="price-desc">Price: High to Low</option>
+                            <option value="rating-desc">Customer Rating</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Product Grid -->
+                <div class="product-grid" id="shop-products-grid" style="grid-template-columns: repeat(3, 1fr);">
+                    <!-- Dynamic products rendered by JS -->
+                </div>
+            </main>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-about">
+                <div class="footer-logo">AURUM<span>.</span></div>
+                <p>Curators of exceptional fine diamonds, luxury gold, and custom gemstones since 1998.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-widget-title">Collections</h4>
+                <ul class="footer-links">
+                    <li><a href="shop.html?category=Rings">Solitaire Rings</a></li>
+                    <li><a href="shop.html?category=Necklaces">Gold Necklaces</a></li>
+                    <li><a href="shop.html?category=Earrings">Fine Earrings</a></li>
+                    <li><a href="shop.html?category=Bracelets">Luxury Bracelets</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-widget-title">Information</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                    <li><a href="DEPLOYMENT.md">Hosting Guide</a></li>
+                    <li><a href="admin.html">Admin Portal</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-widget-title">Contact</h4>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>102 Elite Avenue, Diamond District,<br>Mumbai, MH 400051</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 22 8765 4321</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>concierge@aurumjewelry.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-copy">&copy; 2026 AURUM Fine Jewelry. All Rights Reserved.</div>
+                <div class="footer-payments">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-cc-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Database and App Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Filter/Sort Controller Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // Read query params
+            const params = new URLSearchParams(window.location.search);
+            const initialCategory = params.get("category");
+            const initialSearch = params.get("search");
+
+            // DOM Elements
+            const grid = document.getElementById("shop-products-grid");
+            const countMsg = document.getElementById("products-count-msg");
+            
+            const searchInput = document.getElementById("sidebar-search");
+            const minPriceInput = document.getElementById("price-min");
+            const maxPriceInput = document.getElementById("price-max");
+            const saleFilterChk = document.getElementById("sale-filter-chk");
+            const sortSelect = document.getElementById("sort-select");
+            const clearBtn = document.getElementById("clear-filters-btn");
+            const categoryChks = document.querySelectorAll(".category-filter-chk");
+
+            // Initialize Form values from query parameters
+            if (initialSearch) {
+                searchInput.value = initialSearch;
+            }
+            if (initialCategory) {
+                categoryChks.forEach(chk => {
+                    if (chk.value.toLowerCase() === initialCategory.toLowerCase()) {
+                        chk.checked = true;
+                    }
+                });
+            }
+
+            // Core filtering & rendering function
+            function filterAndRender() {
+                if (!grid) return;
+
+                // 1. Get raw database products
+                let products = window.JewelryDB.getProducts();
+                const totalCount = products.length;
+
+                // 2. Filter by search keyword
+                const keyword = searchInput.value.trim().toLowerCase();
+                if (keyword) {
+                    products = products.filter(p => 
+                        p.name.toLowerCase().includes(keyword) || 
+                        p.category.toLowerCase().includes(keyword) ||
+                        p.description.toLowerCase().includes(keyword)
+                    );
+                }
+
+                // 3. Filter by category
+                const checkedCats = Array.from(categoryChks)
+                    .filter(chk => chk.checked)
+                    .map(chk => chk.value.toLowerCase());
+                
+                if (checkedCats.length > 0) {
+                    products = products.filter(p => checkedCats.includes(p.category.toLowerCase()));
+                }
+
+                // 4. Filter by price
+                const minPrice = parseFloat(minPriceInput.value);
+                const maxPrice = parseFloat(maxPriceInput.value);
+                if (!isNaN(minPrice)) {
+                    products = products.filter(p => p.price >= minPrice);
+                }
+                if (!isNaN(maxPrice)) {
+                    products = products.filter(p => p.price <= maxPrice);
+                }
+
+                // 5. Filter by sale
+                if (saleFilterChk.checked) {
+                    products = products.filter(p => p.isSale);
+                }
+
+                // 6. Sort products
+                const sortBy = sortSelect.value;
+                if (sortBy === "price-asc") {
+                    products.sort((a, b) => a.price - b.price);
+                } else if (sortBy === "price-desc") {
+                    products.sort((a, b) => b.price - a.price);
+                } else if (sortBy === "rating-desc") {
+                    products.sort((a, b) => b.rating - a.rating);
+                } else {
+                    // "featured" default sorting: priority to featured items, then alphabetical
+                    products.sort((a, b) => {
+                        if (a.featured && !b.featured) return -1;
+                        if (!a.featured && b.featured) return 1;
+                        return a.name.localeCompare(b.name);
+                    });
+                }
+
+                // 7. Render dynamic HTML
+                countMsg.textContent = `Showing ${products.length} of ${totalCount} products`;
+
+                if (products.length === 0) {
+                    grid.innerHTML = `
+                        <div style="grid-column: span 3; text-align: center; padding: 5rem 0; color: var(--color-text-muted);">
+                            <i class="fa-solid fa-gem" style="font-size: 2.5rem; margin-bottom: 1rem; opacity: 0.3;"></i>
+                            <p>No products match your filter criteria.</p>
+                        </div>
+                    `;
+                    return;
+                }
+
+                grid.innerHTML = products.map(p => {
+                    const priceHTML = p.isSale 
+                        ? `<span class="product-card-old-price">$${p.originalPrice.toLocaleString()}</span><span class="product-card-sale-price">$${p.price.toLocaleString()}</span>` 
+                        : `<span class="product-card-price">$${p.price.toLocaleString()}</span>`;
+
+                    const saleBadge = p.isSale 
+                        ? `<span class="product-card-badge">Sale</span>` 
+                        : ``;
+
+                    // Generate stars
+                    const fullStars = Math.floor(p.rating);
+                    const halfStar = p.rating % 1 >= 0.5 ? 1 : 0;
+                    const emptyStars = 5 - fullStars - halfStar;
+                    let starHTML = "";
+                    for(let i=0; i<fullStars; i++) starHTML += '<i class="fa-solid fa-star"></i>';
+                    if(halfStar) starHTML += '<i class="fa-solid fa-star-half-stroke"></i>';
+                    for(let i=0; i<emptyStars; i++) starHTML += '<i class="fa-regular fa-star"></i>';
+
+                    return `
+                        <div class="product-card">
+                            ${saleBadge}
+                            <div class="product-img-wrapper" onclick="window.location.href='product.html?id=${p.id}'">
+                                <img src="${p.images[0]}" alt="${p.name}" class="product-card-img">
+                                <div class="product-card-actions">
+                                    <button class="product-action-btn" onclick="event.stopPropagation(); window.location.href='product.html?id=${p.id}'">View Detail</button>
+                                    <button class="product-action-btn" onclick="event.stopPropagation(); CartAPI.addToCart('${p.id}', 1, '${p.metals[0] || 'Standard'}', '${p.sizes[0] || 'Standard'}')">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-card-cat">${p.category}</span>
+                                <h3 class="product-card-title"><a href="product.html?id=${p.id}">${p.name}</a></h3>
+                                <div class="product-rating">
+                                    ${starHTML}
+                                    <span class="rating-count">(${p.reviewCount})</span>
+                                </div>
+                                <div class="product-price-box">
+                                    ${priceHTML}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+            }
+
+            // Attach event listeners
+            searchInput.addEventListener("input", filterAndRender);
+            minPriceInput.addEventListener("input", filterAndRender);
+            maxPriceInput.addEventListener("input", filterAndRender);
+            saleFilterChk.addEventListener("change", filterAndRender);
+            sortSelect.addEventListener("change", filterAndRender);
+
+            categoryChks.forEach(chk => {
+                chk.addEventListener("change", filterAndRender);
+            });
+
+            // Clear all filters
+            clearBtn.addEventListener("click", () => {
+                searchInput.value = "";
+                minPriceInput.value = "";
+                maxPriceInput.value = "";
+                saleFilterChk.checked = false;
+                sortSelect.value = "featured";
+                categoryChks.forEach(chk => chk.checked = false);
+                
+                // Clear URL query parameters
+                window.history.pushState({}, document.title, window.location.pathname);
+                
+                filterAndRender();
+                window.AppUI.showToast("Filters cleared.", "info");
+            });
+
+            // Initial render
+            filterAndRender();
+
+            // Re-render when database updates (e.g. from Admin page)
+            window.addEventListener("storage", (e) => {
+                if (e.key === "jewelry_products") {
+                    filterAndRender();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

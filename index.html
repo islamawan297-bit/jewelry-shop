@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Discover AURUM's premium collection of hand-crafted fine jewelry, including diamond solitaire rings, luxury gold chains, necklaces, and sapphire bands. Fast delivery & secure payment options.">
+    <title>AURUM | Premium Fine Jewelry & Diamonds</title>
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome (Loaded dynamically in app.js if missing, but included here for instant rendering) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Sticky Header -->
+    <header>
+        <div class="header-container">
+            <!-- Mobile Menu Toggle Button -->
+            <button class="mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+
+            <!-- Brand Logo -->
+            <div class="logo">
+                <a href="index.html">AURUM<span>.</span></a>
+            </div>
+
+            <!-- Navigation Links -->
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Collections</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="admin.html" class="nav-link">Admin Portal</a>
+            </nav>
+
+            <!-- Navigation Actions -->
+            <div class="nav-actions">
+                <button class="nav-action-btn" id="search-toggle" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="nav-action-btn" id="cart-toggle" aria-label="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Search Overlay Panel -->
+        <div class="search-container" id="search-container">
+            <div class="search-inner">
+                <input type="text" class="search-input" id="search-input" placeholder="Search the collection (e.g. Diamond, Ring, Sapphire)...">
+                <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Luxury Hero Slider Section -->
+    <section class="hero">
+        <div class="hero-slider">
+            <!-- Slide 1 -->
+            <div class="hero-slide active">
+                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=1200&auto=format&fit=crop" alt="Fine Diamond Jewelry Set" class="hero-bg">
+                <div class="hero-content">
+                    <p class="hero-subtitle">Crafted with Perfection</p>
+                    <h2 class="hero-title">The Empress Collection</h2>
+                    <div class="hero-btn-container">
+                        <a href="shop.html" class="btn-gold">Explore Collection</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Slide 2 -->
+            <div class="hero-slide">
+                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1200&auto=format&fit=crop" alt="Gold Diamond Ring Close Up" class="hero-bg">
+                <div class="hero-content">
+                    <p class="hero-subtitle">Symbols of Eternal Love</p>
+                    <h2 class="hero-title">Timeless Solitaires</h2>
+                    <div class="hero-btn-container">
+                        <a href="shop.html?category=Rings" class="btn-outline">Shop Rings</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slider Controls -->
+        <button class="hero-control hero-control-prev" id="hero-prev"><i class="fa-solid fa-chevron-left"></i></button>
+        <button class="hero-control hero-control-next" id="hero-next"><i class="fa-solid fa-chevron-right"></i></button>
+
+        <!-- Slider Indicators -->
+        <div class="hero-indicators">
+            <span class="hero-indicator active" data-slide="0"></span>
+            <span class="hero-indicator" data-slide="1"></span>
+        </div>
+    </section>
+
+    <!-- Category Spotlight / Collections Grid -->
+    <section class="section">
+        <div class="section-header">
+            <p class="section-subtitle">Curated Selection</p>
+            <h2 class="section-title">Shop by Category</h2>
+        </div>
+        
+        <div class="categories-grid">
+            <!-- Rings -->
+            <div class="category-card" onclick="window.location.href='shop.html?category=Rings'">
+                <img src="https://images.unsplash.com/photo-1603561591411-07134e71a2a9?q=80&w=600&auto=format&fit=crop" alt="Luxury Diamond Rings" class="category-img">
+                <div class="category-overlay">
+                    <h3 class="category-name">Rings</h3>
+                    <span class="category-count">View Collection</span>
+                </div>
+            </div>
+            <!-- Necklaces -->
+            <div class="category-card" onclick="window.location.href='shop.html?category=Necklaces'">
+                <img src="https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=600&auto=format&fit=crop" alt="Premium Gold Necklaces" class="category-img">
+                <div class="category-overlay">
+                    <h3 class="category-name">Necklaces</h3>
+                    <span class="category-count">View Collection</span>
+                </div>
+            </div>
+            <!-- Earrings -->
+            <div class="category-card" onclick="window.location.href='shop.html?category=Earrings'">
+                <img src="https://images.unsplash.com/photo-1635767798638-3e25273a8236?q=80&w=600&auto=format&fit=crop" alt="Premium Earrings" class="category-img">
+                <div class="category-overlay">
+                    <h3 class="category-name">Earrings</h3>
+                    <span class="category-count">View Collection</span>
+                </div>
+            </div>
+            <!-- Bracelets -->
+            <div class="category-card" onclick="window.location.href='shop.html?category=Bracelets'">
+                <img src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=600&auto=format&fit=crop" alt="Gold Bracelets" class="category-img">
+                <div class="category-overlay">
+                    <h3 class="category-name">Bracelets</h3>
+                    <span class="category-count">View Collection</span>
+                </div>
+            </div>
+            <!-- Sets -->
+            <div class="category-card" onclick="window.location.href='shop.html?category=Sets'">
+                <img src="https://images.unsplash.com/photo-1543294001-f7cbfe92237e?q=80&w=600&auto=format&fit=crop" alt="Matching Jewelry Suites" class="category-img">
+                <div class="category-overlay">
+                    <h3 class="category-name">Sets</h3>
+                    <span class="category-count">View Collection</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section class="section section-dark">
+        <div class="section-inner" style="display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center;">
+            <div style="border: 1px solid var(--color-border-dark); padding: 1.5rem; background-color: var(--color-dark-accent);">
+                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=600&auto=format&fit=crop" alt="Jewelry Craftsmanship Detail" style="width: 100%; height: 420px; object-fit: cover;">
+            </div>
+            <div>
+                <p style="color: var(--color-gold); font-family: var(--font-serif); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.85rem; margin-bottom: 1rem;">Since 1998</p>
+                <h2 style="color: var(--color-light); font-size: 2.2rem; margin-bottom: 1.5rem; letter-spacing: 0.1em;">Master Craftsmanship</h2>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 1.5rem; font-size: 0.95rem; line-height: 1.8;">
+                    At AURUM, our story is molded from heritage and raw beauty. Every design begins as a hand-drawn sketch before being translated into gold by our master artisans. We source only conflict-free diamonds and gemstones of the finest clarity and brilliance.
+                </p>
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 2.5rem; font-size: 0.95rem; line-height: 1.8;">
+                    Our commitment to sustainability and ethical luxury ensures that each piece is not only a work of art but a treasure you can carry with pride.
+                </p>
+                <a href="about.html" class="btn-gold">Our Heritage</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section class="section">
+        <div class="section-header">
+            <p class="section-subtitle">Exquisite Creations</p>
+            <h2 class="section-title">Featured Jewelry</h2>
+        </div>
+
+        <!-- Product Grid populated dynamically by JS -->
+        <div class="product-grid" id="featured-products-grid">
+            <!-- Dynamic products render here -->
+        </div>
+    </section>
+
+    <!-- Special Offers / Campaign Banner -->
+    <section class="section section-dark" style="padding-top: 0; padding-bottom: 0;">
+        <div class="offers-banner">
+            <div class="offers-content">
+                <span class="offers-badge">Exclusive Offer</span>
+                <h2 class="offers-title">An Elegant Celebration:<br>Enjoy 20% Off</h2>
+                <p class="offers-desc">Adorn yourself with diamonds and fine gold. Apply our exclusive luxury code at checkout to unlock savings on our entire catalog.</p>
+                <div class="offers-code">PROMO CODE: LUXURY20</div>
+                <a href="shop.html" class="btn-gold">Shop The Offer</a>
+            </div>
+            <div class="offers-img"></div>
+        </div>
+    </section>
+
+    <!-- Customer Testimonials Section -->
+    <section class="section">
+        <div class="section-header">
+            <p class="section-subtitle">Testimonials</p>
+            <h2 class="section-title">Client Experiences</h2>
+        </div>
+
+        <div class="testimonials-slider">
+            <!-- Slide 1 -->
+            <div class="testimonial-slide active">
+                <div class="testimonial-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"My partner proposed with the Aurora Solitaire, and it is simply spectacular. The way the light refracts through the diamond is incredible. The packaging was matching in quality - a polished wood case."</p>
+                <h3 class="testimonial-author">Sophia Martinez</h3>
+            </div>
+            <!-- Slide 2 -->
+            <div class="testimonial-slide">
+                <div class="testimonial-stars">
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                    <i class="fa-solid fa-star"></i>
+                </div>
+                <p class="testimonial-text">"I bought the Elysian Hoops for daily wear. They are extremely lightweight and comfortable. The clicking safety hinge gives me absolute confidence they won't slip out."</p>
+                <h3 class="testimonial-author">Charlotte B.</h3>
+            </div>
+
+            <!-- Slider Nav -->
+            <div class="testimonial-nav">
+                <button class="test-nav-btn" id="test-prev"><i class="fa-solid fa-arrow-left-long"></i></button>
+                <button class="test-nav-btn" id="test-next"><i class="fa-solid fa-arrow-right-long"></i></button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Newsletter Sign-up Section -->
+    <section class="section newsletter-section">
+        <div class="newsletter-container">
+            <h2 class="newsletter-title" style="font-size: 1.8rem; text-transform: uppercase;">Join the Club</h2>
+            <p class="newsletter-desc">Subscribe to receive early access to new collection launches, invitations to private sales, and jewelry care insights.</p>
+            <form class="newsletter-form" id="newsletter-form" onsubmit="event.preventDefault(); window.AppUI.showToast('Thank you for subscribing!', 'success'); this.reset();">
+                <input type="email" class="newsletter-email" placeholder="Enter your email address" required>
+                <button type="submit" class="newsletter-btn">Subscribe</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-about">
+                <div class="footer-logo">AURUM<span>.</span></div>
+                <p>Curators of exceptional fine diamonds, luxury gold, and custom gemstones since 1998.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-widget-title">Collections</h4>
+                <ul class="footer-links">
+                    <li><a href="shop.html?category=Rings">Solitaire Rings</a></li>
+                    <li><a href="shop.html?category=Necklaces">Gold Necklaces</a></li>
+                    <li><a href="shop.html?category=Earrings">Fine Earrings</a></li>
+                    <li><a href="shop.html?category=Bracelets">Luxury Bracelets</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-widget-title">Information</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                    <li><a href="DEPLOYMENT.md">Hosting Guide</a></li>
+                    <li><a href="admin.html">Admin Portal</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-widget-title">Contact</h4>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>102 Elite Avenue, Diamond District,<br>Mumbai, MH 400051</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 22 8765 4321</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>concierge@aurumjewelry.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-copy">&copy; 2026 AURUM Fine Jewelry. All Rights Reserved.</div>
+                <div class="footer-payments">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-cc-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Database and App Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Inline Script for Home Page functionality -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            // --- HERO SLIDER ---
+            const slides = document.querySelectorAll(".hero-slide");
+            const indicators = document.querySelectorAll(".hero-indicator");
+            let currentSlide = 0;
+            let slideInterval;
+
+            function showSlide(index) {
+                slides[currentSlide].classList.remove("active");
+                indicators[currentSlide].classList.remove("active");
+                
+                currentSlide = (index + slides.length) % slides.length;
+                
+                slides[currentSlide].classList.add("active");
+                indicators[currentSlide].classList.add("active");
+            }
+
+            document.getElementById("hero-next").addEventListener("click", () => {
+                showSlide(currentSlide + 1);
+                resetInterval();
+            });
+
+            document.getElementById("hero-prev").addEventListener("click", () => {
+                showSlide(currentSlide - 1);
+                resetInterval();
+            });
+
+            indicators.forEach((indicator, index) => {
+                indicator.addEventListener("click", () => {
+                    showSlide(index);
+                    resetInterval();
+                });
+            });
+
+            function startInterval() {
+                slideInterval = setInterval(() => {
+                    showSlide(currentSlide + 1);
+                }, 5000); // Rotate every 5 seconds
+            }
+
+            function resetInterval() {
+                clearInterval(slideInterval);
+                startInterval();
+            }
+
+            startInterval();
+
+            // --- TESTIMONIALS SLIDER ---
+            const testSlides = document.querySelectorAll(".testimonial-slide");
+            let activeTest = 0;
+
+            function showTestimonial(index) {
+                testSlides[activeTest].classList.remove("active");
+                activeTest = (index + testSlides.length) % testSlides.length;
+                testSlides[activeTest].classList.add("active");
+            }
+
+            document.getElementById("test-next").addEventListener("click", () => {
+                showTestimonial(activeTest + 1);
+            });
+
+            document.getElementById("test-prev").addEventListener("click", () => {
+                showTestimonial(activeTest - 1);
+            });
+
+            // --- FEATURED PRODUCTS DYNAMIC RENDER ---
+            function renderFeaturedProducts() {
+                const grid = document.getElementById("featured-products-grid");
+                if (!grid) return;
+
+                const products = window.JewelryDB.getProducts();
+                const featured = products.filter(p => p.featured).slice(0, 4); // Limit to 4 items
+
+                if (featured.length === 0) {
+                    grid.innerHTML = `<p style="grid-column: span 4; text-align: center; color: var(--color-text-muted);">No products featured at this time.</p>`;
+                    return;
+                }
+
+                grid.innerHTML = featured.map(p => {
+                    const priceHTML = p.isSale 
+                        ? `<span class="product-card-old-price">$${p.originalPrice.toLocaleString()}</span><span class="product-card-sale-price">$${p.price.toLocaleString()}</span>` 
+                        : `<span class="product-card-price">$${p.price.toLocaleString()}</span>`;
+
+                    const saleBadge = p.isSale 
+                        ? `<span class="product-card-badge">Sale</span>` 
+                        : ``;
+
+                    // Generate stars
+                    const fullStars = Math.floor(p.rating);
+                    const halfStar = p.rating % 1 >= 0.5 ? 1 : 0;
+                    const emptyStars = 5 - fullStars - halfStar;
+                    let starHTML = "";
+                    for(let i=0; i<fullStars; i++) starHTML += '<i class="fa-solid fa-star"></i>';
+                    if(halfStar) starHTML += '<i class="fa-solid fa-star-half-stroke"></i>';
+                    for(let i=0; i<emptyStars; i++) starHTML += '<i class="fa-regular fa-star"></i>';
+
+                    return `
+                        <div class="product-card">
+                            ${saleBadge}
+                            <div class="product-img-wrapper" onclick="window.location.href='product.html?id=${p.id}'">
+                                <img src="${p.images[0]}" alt="${p.name}" class="product-card-img">
+                                <div class="product-card-actions">
+                                    <button class="product-action-btn" onclick="event.stopPropagation(); window.location.href='product.html?id=${p.id}'">View Detail</button>
+                                    <button class="product-action-btn" onclick="event.stopPropagation(); CartAPI.addToCart('${p.id}', 1, '${p.metals[0] || 'Standard'}', '${p.sizes[0] || 'Standard'}')">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-card-cat">${p.category}</span>
+                                <h3 class="product-card-title"><a href="product.html?id=${p.id}">${p.name}</a></h3>
+                                <div class="product-rating">
+                                    ${starHTML}
+                                    <span class="rating-count">(${p.reviewCount})</span>
+                                </div>
+                                <div class="product-price-box">
+                                    ${priceHTML}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+            }
+
+            renderFeaturedProducts();
+
+            // Re-render when products database changes (e.g. from Admin in another tab)
+            window.addEventListener("storage", (e) => {
+                if (e.key === "jewelry_products") {
+                    renderFeaturedProducts();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

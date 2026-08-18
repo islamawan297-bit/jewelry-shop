@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Securely complete your jewelry purchase at AURUM. Options include Razorpay, UPI, Cash on Delivery (COD), and WhatsApp ordering.">
+    <title>Secure Checkout | AURUM Fine Jewelry</title>
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Sticky Header -->
+    <header>
+        <div class="header-container">
+            <button class="mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+
+            <div class="logo">
+                <a href="index.html">AURUM<span>.</span></a>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Collections</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="admin.html" class="nav-link">Admin Portal</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="nav-action-btn" id="search-toggle" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="nav-action-btn" id="cart-toggle" aria-label="Cart"><i class="fa-solid fa-bag-shopping"></i><span class="cart-badge">0</span></button>
+            </div>
+        </div>
+
+        <div class="search-container" id="search-container">
+            <div class="search-inner">
+                <input type="text" class="search-input" id="search-input" placeholder="Search the collection...">
+                <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="section" style="padding-bottom: 2rem;" id="checkout-title-section">
+        <div class="section-header" style="margin-bottom: 0;">
+            <p class="section-subtitle">Secure Payment</p>
+            <h1 class="section-title">Checkout</h1>
+        </div>
+    </section>
+
+    <!-- Checkout Main Section -->
+    <section class="section" style="padding-top: 0;">
+        <div class="checkout-layout" id="checkout-main-layout">
+            <!-- Left Column: Forms -->
+            <div class="checkout-form-box">
+                <form id="checkout-shipping-form">
+                    <!-- Step 1: Shipping Info -->
+                    <h3 class="checkout-step-title">1. Shipping Details</h3>
+                    <div class="form-grid" style="margin-bottom: 3rem;">
+                        <div class="form-group form-group-full">
+                            <label for="ship-name">Full Name *</label>
+                            <input type="text" class="form-control" id="ship-name" required placeholder="E.g. Rajesh Kumar">
+                        </div>
+                        <div class="form-group">
+                            <label for="ship-email">Email Address *</label>
+                            <input type="email" class="form-control" id="ship-email" required placeholder="rajesh@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="ship-phone">Phone Number *</label>
+                            <input type="tel" class="form-control" id="ship-phone" required placeholder="+91 98765 43210">
+                        </div>
+                        <div class="form-group form-group-full">
+                            <label for="ship-address">Street Address *</label>
+                            <input type="text" class="form-control" id="ship-address" required placeholder="Flat / House No., Apartment, Street name">
+                        </div>
+                        <div class="form-group">
+                            <label for="ship-city">City *</label>
+                            <input type="text" class="form-control" id="ship-city" required placeholder="E.g. Mumbai">
+                        </div>
+                        <div class="form-group">
+                            <label for="ship-state">State *</label>
+                            <input type="text" class="form-control" id="ship-state" required placeholder="E.g. Maharashtra">
+                        </div>
+                        <div class="form-group">
+                            <label for="ship-zip">Pin Code / Zip *</label>
+                            <input type="text" class="form-control" id="ship-zip" required placeholder="400001">
+                        </div>
+                    </div>
+
+                    <!-- Step 2: Payment Method -->
+                    <h3 class="checkout-step-title">2. Payment Method</h3>
+                    <div class="checkout-payment-options">
+                        <!-- Razorpay / UPI Option -->
+                        <div class="payment-option active" data-value="razorpay">
+                            <input type="radio" name="payment_method" class="payment-radio" value="razorpay" checked>
+                            <div class="payment-details">
+                                <div class="payment-title">Razorpay / UPI (Card, Netbanking, QR)</div>
+                                <div class="payment-desc">Pay securely using India's leading payment gateway. Supports Google Pay, PhonePe, Cards, Netbanking.</div>
+                            </div>
+                        </div>
+
+                        <!-- COD Option -->
+                        <div class="payment-option" data-value="cod">
+                            <input type="radio" name="payment_method" class="payment-radio" value="cod">
+                            <div class="payment-details">
+                                <div class="payment-title">Cash on Delivery (COD)</div>
+                                <div class="payment-desc">Pay with cash upon delivery. Fully insured, signature required for verification.</div>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp Checkout Option -->
+                        <div class="payment-option" data-value="whatsapp">
+                            <input type="radio" name="payment_method" class="payment-radio" value="whatsapp">
+                            <div class="payment-details">
+                                <div class="payment-title">Place Order & Pay on WhatsApp</div>
+                                <div class="payment-desc">Finalize your order via a direct WhatsApp chat with our customer support concierge for personal assistance.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-gold" id="place-order-submit-btn" style="width: 100%; margin-top: 3rem; font-size: 0.9rem;">
+                        Pay Securely via Razorpay
+                    </button>
+                </form>
+            </div>
+
+            <!-- Right Column: Sidebar Summary -->
+            <div class="checkout-summary-box">
+                <h3 class="summary-title" style="margin-bottom: 1.5rem;">Bag Details</h3>
+                <div class="checkout-items-list" id="checkout-summary-items">
+                    <!-- Dynamic checkout summary list -->
+                </div>
+
+                <div style="border-top: 1px solid var(--color-border); padding-top: 1.5rem; display: flex; flex-direction: column; gap: 0.8rem;">
+                    <div class="summary-row" style="margin-bottom: 0;">
+                        <span>Subtotal</span>
+                        <span id="checkout-subtotal">$0.00</span>
+                    </div>
+                    <div class="summary-row discount-row" id="checkout-discount-row" style="display: none; color: green; margin-bottom: 0;">
+                        <span>Discount</span>
+                        <span id="checkout-discount">-$0.00</span>
+                    </div>
+                    <div class="summary-row" style="margin-bottom: 0;">
+                        <span>Shipping</span>
+                        <span id="checkout-shipping">FREE</span>
+                    </div>
+                    <div class="summary-row total-row" style="margin-top: 0.5rem;">
+                        <span>Total</span>
+                        <span id="checkout-total">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Simulated Razorpay Payment Modal Overlay -->
+    <div class="payment-modal-overlay" id="razorpay-modal-overlay">
+        <div class="payment-modal">
+            <!-- Header -->
+            <div class="payment-modal-header">
+                <div class="razorpay-logo">Razor<span>pay</span></div>
+                <div class="payment-modal-amount" id="razorpay-modal-total">$0.00</div>
+            </div>
+
+            <!-- Body -->
+            <div class="payment-modal-body">
+                <!-- Step 1: Select Method -->
+                <div class="razorpay-step active" id="razorpay-step-options">
+                    <div class="razorpay-title">Select Payment Method</div>
+                    <div class="payment-methods-list">
+                        <!-- UPI -->
+                        <div class="pay-btn-item" id="pay-method-upi">
+                            <div class="pay-btn-left">
+                                <i class="fa-solid fa-mobile-screen-button"></i>
+                                <span>UPI (Google Pay, PhonePe, BHIM)</span>
+                            </div>
+                            <div class="pay-btn-right"><i class="fa-solid fa-chevron-right"></i></div>
+                        </div>
+
+                        <!-- QR Code -->
+                        <div class="pay-btn-item" id="pay-method-qr">
+                            <div class="pay-btn-left">
+                                <i class="fa-solid fa-qrcode"></i>
+                                <span>Scan UPI QR Code</span>
+                            </div>
+                            <div class="pay-btn-right"><i class="fa-solid fa-chevron-right"></i></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 2: UPI Address -->
+                <div class="razorpay-step" id="razorpay-step-upi-form">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;">
+                        <button id="upi-back-btn" style="background: none; border: none; font-size: 1rem; cursor: pointer; color: var(--color-text-muted);"><i class="fa-solid fa-arrow-left"></i></button>
+                        <div class="razorpay-title" style="margin-bottom: 0;">Enter UPI ID</div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-bottom: 1rem;">Enter your VPA / UPI ID (e.g. rajesh@okaxis)</p>
+                    <div class="upi-input-group">
+                        <input type="text" class="upi-input" id="upi-address-input" placeholder="e.g. success@upi" value="success@upi">
+                        <button class="upi-verify-btn" id="upi-verify-submit">Verify & Pay</button>
+                    </div>
+                    <div id="upi-error-msg" style="color: red; font-size: 0.75rem; margin-top: 0.5rem; display: none;">Please enter a valid UPI address.</div>
+                </div>
+
+                <!-- Step 3: QR Code scan -->
+                <div class="razorpay-step" id="razorpay-step-qr-code">
+                    <div style="display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+                        <button id="qr-back-btn" style="background: none; border: none; font-size: 1rem; cursor: pointer; color: var(--color-text-muted);"><i class="fa-solid fa-arrow-left"></i></button>
+                        <div class="razorpay-title" style="margin-bottom: 0;">Scan & Pay</div>
+                    </div>
+                    <p style="font-size: 0.8rem; color: var(--color-text-muted); text-align: center; margin-bottom: 1rem;">Scan this UPI QR code using Google Pay or PhonePe</p>
+                    <div class="qr-code-box">
+                        <div class="qr-placeholder">
+                            <i class="fa-solid fa-qrcode"></i>
+                            <div style="position: absolute; width: 100%; height: 100%; top: 0; left: 0; display: flex; align-items: center; justify-content: center; background-color: rgba(255,255,255,0.9); font-weight: 600; font-size: 0.85rem; color: var(--color-gold);">
+                                MOCK QR CODE
+                            </div>
+                        </div>
+                    </div>
+                    <div style="display: flex; justify-content: center; align-items: center; gap: 0.5rem; font-size: 0.8rem; color: #d97706; margin-top: 1rem;">
+                        <i class="fa-solid fa-hourglass-half" class="spinner" style="animation: spin 3s linear infinite;"></i>
+                        <span id="qr-status-msg">Waiting for payment scan...</span>
+                    </div>
+                </div>
+
+                <!-- Step 4: Loading Screen -->
+                <div class="razorpay-step" id="razorpay-step-loader">
+                    <div class="payment-loader">
+                        <div class="spinner"></div>
+                        <h4 style="font-family: var(--font-sans); font-weight: 500; font-size: 1rem;" id="loader-status-msg">Verifying details...</h4>
+                        <p style="font-size: 0.8rem; color: var(--color-text-muted); margin-top: 0.5rem;">Do not close or reload this window.</p>
+                    </div>
+                </div>
+
+                <!-- Step 5: Success Screen -->
+                <div class="razorpay-step" id="razorpay-step-success">
+                    <div class="success-icon-box">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3 style="text-align: center; font-family: var(--font-serif); font-size: 1.25rem; margin-bottom: 0.5rem;">Payment Successful</h3>
+                    <p style="text-align: center; font-size: 0.85rem; color: var(--color-text-muted); margin-bottom: 1.5rem;">Transaction reference ID: pay_mock_${Math.floor(Math.random()*900000+100000)}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Database and App Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Checkout Controller Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const itemsListEl = document.getElementById("checkout-summary-items");
+            const subtotalEl = document.getElementById("checkout-subtotal");
+            const discountEl = document.getElementById("checkout-discount");
+            const discountRow = document.getElementById("checkout-discount-row");
+            const shippingEl = document.getElementById("checkout-shipping");
+            const totalEl = document.getElementById("checkout-total");
+            const submitBtn = document.getElementById("place-order-submit-btn");
+
+            // Modal elements
+            const rpOverlay = document.getElementById("razorpay-modal-overlay");
+            const rpModalTotal = document.getElementById("razorpay-modal-total");
+            const stepOptions = document.getElementById("razorpay-step-options");
+            const stepUpiForm = document.getElementById("razorpay-step-upi-form");
+            const stepQrCode = document.getElementById("razorpay-step-qr-code");
+            const stepLoader = document.getElementById("razorpay-step-loader");
+            const stepSuccess = document.getElementById("razorpay-step-success");
+            const upiAddressInput = document.getElementById("upi-address-input");
+            const loaderStatusMsg = document.getElementById("loader-status-msg");
+            
+            let selectedMethod = "razorpay";
+            let cart = [];
+
+            function loadCheckoutData() {
+                cart = window.CartAPI.getCart();
+
+                // If cart is empty, redirect to shop
+                if (cart.length === 0) {
+                    window.location.href = "shop.html";
+                    return;
+                }
+
+                // Render summary list items
+                itemsListEl.innerHTML = cart.map(item => `
+                    <div class="checkout-item">
+                        <img src="${item.image}" alt="${item.name}" class="checkout-item-img">
+                        <div class="checkout-item-details">
+                            <h4 class="checkout-item-name">${item.name}</h4>
+                            <div class="checkout-item-meta">${item.metal} / Size ${item.size} &nbsp;•&nbsp; Qty ${item.quantity}</div>
+                        </div>
+                        <div class="checkout-item-price">$${(item.price * item.quantity).toLocaleString()}</div>
+                    </div>
+                `).join("");
+
+                // Summary calculations
+                subtotalEl.textContent = `$${window.CartAPI.getSubtotal().toLocaleString()}`;
+                shippingEl.textContent = window.CartAPI.getShipping() === 0 ? "FREE" : `$${window.CartAPI.getShipping().toFixed(2)}`;
+                
+                const discount = window.CartAPI.getDiscount();
+                if (discount > 0) {
+                    discountRow.style.display = "flex";
+                    discountEl.textContent = `-$${discount.toLocaleString()}`;
+                } else {
+                    discountRow.style.display = "none";
+                }
+
+                totalEl.textContent = `$${window.CartAPI.getTotal().toLocaleString()}`;
+                rpModalTotal.textContent = `$${window.CartAPI.getTotal().toLocaleString()}`;
+            }
+
+            // Method selection listeners
+            const optCards = document.querySelectorAll(".payment-option");
+            optCards.forEach(card => {
+                card.addEventListener("click", () => {
+                    optCards.forEach(c => c.classList.remove("active"));
+                    card.classList.add("active");
+
+                    const radio = card.querySelector(".payment-radio");
+                    radio.checked = true;
+
+                    selectedMethod = radio.value;
+
+                    // Update submit button text
+                    if (selectedMethod === "razorpay") {
+                        submitBtn.textContent = "Pay Securely via Razorpay";
+                    } else if (selectedMethod === "cod") {
+                        submitBtn.textContent = "Place Order via COD";
+                    } else if (selectedMethod === "whatsapp") {
+                        submitBtn.textContent = "Order Instantly on WhatsApp";
+                    }
+                });
+            });
+
+            // Form Submit handler
+            const form = document.getElementById("checkout-shipping-form");
+            form.addEventListener("submit", (e) => {
+                e.preventDefault();
+
+                // Shipping info
+                const name = document.getElementById("ship-name").value.trim();
+                const email = document.getElementById("ship-email").value.trim();
+                const phone = document.getElementById("ship-phone").value.trim();
+                const address = document.getElementById("ship-address").value.trim();
+                const city = document.getElementById("ship-city").value.trim();
+                const state = document.getElementById("ship-state").value.trim();
+                const zip = document.getElementById("ship-zip").value.trim();
+
+                const activeCoupon = window.CartAPI.getCoupon();
+
+                const orderData = {
+                    customerName: name,
+                    email: email,
+                    phone: phone,
+                    address: address,
+                    city: city,
+                    state: state,
+                    zip: zip,
+                    items: cart,
+                    subtotal: window.CartAPI.getSubtotal(),
+                    discount: window.CartAPI.getDiscount(),
+                    couponCode: activeCoupon ? activeCoupon.code : "",
+                    shipping: window.CartAPI.getShipping(),
+                    total: window.CartAPI.getTotal()
+                };
+
+                if (selectedMethod === "cod") {
+                    orderData.paymentMethod = "Cash on Delivery (COD)";
+                    placeCODOrder(orderData);
+                } else if (selectedMethod === "whatsapp") {
+                    orderData.paymentMethod = "WhatsApp Checkout";
+                    placeWhatsAppOrder(orderData);
+                } else if (selectedMethod === "razorpay") {
+                    orderData.paymentMethod = "Razorpay (Online)";
+                    openRazorpayGateway(orderData);
+                }
+            });
+
+            // COD Process
+            function placeCODOrder(orderData) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = "Processing order...";
+
+                setTimeout(() => {
+                    const newOrder = window.JewelryDB.saveOrder(orderData);
+                    window.CartAPI.clearCart();
+                    renderSuccessReceipt(newOrder);
+                }, 1500);
+            }
+
+            // WhatsApp Redirection Order Process
+            function placeWhatsAppOrder(orderData) {
+                // Save order to dashboard
+                const newOrder = window.JewelryDB.saveOrder(orderData);
+                
+                // Construct message URL
+                const phoneNumber = "912287654321"; // Brand WhatsApp
+                
+                let itemsListText = orderData.items.map(
+                    (item, i) => `\n${i+1}. ${item.name} (${item.metal} / Size ${item.size}) x${item.quantity} - $${(item.price * item.quantity).toLocaleString()}`
+                ).join("");
+
+                let couponText = orderData.couponCode ? `\nCoupon Applied: ${orderData.couponCode} (-$${orderData.discount.toLocaleString()})` : "";
+
+                const message = `Hi AURUM, I would like to place an order:
+*Order Reference:* ${newOrder.id}
+*Customer Details:*
+• Name: ${orderData.customerName}
+• Phone: ${orderData.phone}
+• Email: ${orderData.email}
+• Shipping Address: ${orderData.address}, ${orderData.city}, ${orderData.state} - ${orderData.zip}
+
+*Selected Pieces:*${itemsListText}
+${couponText}
+• Shipping: ${orderData.shipping === 0 ? "FREE Insured" : "$" + orderData.shipping}
+• *Total Amount:* $${orderData.total.toLocaleString()}
+• *Payment Preference:* COD / WhatsApp Transfer
+
+Please verify and confirm my order. Thank you.`;
+
+                const encodedMessage = encodeURIComponent(message);
+                const waUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+
+                window.CartAPI.clearCart();
+                renderSuccessReceipt(newOrder, true, waUrl);
+            }
+
+            // Razorpay Gateway Steps Toggler Helper
+            function switchRpStep(stepEl) {
+                document.querySelectorAll(".razorpay-step").forEach(s => s.classList.remove("active"));
+                stepEl.classList.add("active");
+            }
+
+            // Razorpay Process
+            function openRazorpayGateway(orderData) {
+                rpOverlay.classList.add("active");
+                switchRpStep(stepOptions);
+
+                // Choose UPI
+                document.getElementById("pay-method-upi").onclick = () => {
+                    switchRpStep(stepUpiForm);
+                };
+
+                // Choose QR Code
+                document.getElementById("pay-method-qr").onclick = () => {
+                    switchRpStep(stepQrCode);
+                    document.getElementById("qr-status-msg").textContent = "Waiting for payment scan...";
+                    
+                    // Simulate QR Scan check
+                    setTimeout(() => {
+                        document.getElementById("qr-status-msg").textContent = "QR Scanned! Approving...";
+                        
+                        setTimeout(() => {
+                            switchRpStep(stepLoader);
+                            loaderStatusMsg.textContent = "Authorizing transaction...";
+                            
+                            setTimeout(() => {
+                                switchRpStep(stepSuccess);
+                                
+                                setTimeout(() => {
+                                    rpOverlay.classList.remove("active");
+                                    const newOrder = window.JewelryDB.saveOrder(orderData);
+                                    window.CartAPI.clearCart();
+                                    renderSuccessReceipt(newOrder);
+                                }, 1500);
+                            }, 2000);
+                        }, 1500);
+                    }, 4000);
+                };
+
+                // UPI back button
+                document.getElementById("upi-back-btn").onclick = () => switchRpStep(stepOptions);
+                document.getElementById("qr-back-btn").onclick = () => switchRpStep(stepOptions);
+
+                // Verify & Pay UPI Click
+                document.getElementById("upi-verify-submit").onclick = () => {
+                    const address = upiAddressInput.value.trim();
+                    if (!address.includes("@")) {
+                        document.getElementById("upi-error-msg").style.display = "block";
+                        return;
+                    }
+                    document.getElementById("upi-error-msg").style.display = "none";
+
+                    switchRpStep(stepLoader);
+                    loaderStatusMsg.textContent = "Verifying UPI address...";
+
+                    setTimeout(() => {
+                        loaderStatusMsg.textContent = "Awaiting transaction approval on your phone...";
+                        
+                        setTimeout(() => {
+                            loaderStatusMsg.textContent = "Processing payment...";
+                            
+                            setTimeout(() => {
+                                switchRpStep(stepSuccess);
+                                
+                                setTimeout(() => {
+                                    rpOverlay.classList.remove("active");
+                                    const newOrder = window.JewelryDB.saveOrder(orderData);
+                                    window.CartAPI.clearCart();
+                                    renderSuccessReceipt(newOrder);
+                                }, 1500);
+                            }, 2000);
+                        }, 2500);
+                    }, 1500);
+                };
+            }
+
+            // Success Receipt Page Renderer
+            function renderSuccessReceipt(order, isWhatsApp = false, waUrl = null) {
+                // Clear URL styling sections
+                document.getElementById("checkout-title-section").style.display = "none";
+                const mainLayout = document.getElementById("checkout-main-layout");
+
+                // WhatsApp specifics
+                let waActionHTML = "";
+                if (isWhatsApp && waUrl) {
+                    waActionHTML = `
+                        <div style="background-color: #eff6ff; border: 1px solid #3b82f6; padding: 1.5rem; margin-bottom: 2rem; border-radius: 4px;">
+                            <p style="font-size: 0.9rem; color: #1e3a8a; margin-bottom: 1rem; font-weight: 500;">
+                                <i class="fa-solid fa-circle-info" style="margin-right: 0.5rem; color: #3b82f6;"></i>
+                                One last step: Redirect to WhatsApp to send your order details to our concierge.
+                            </p>
+                            <a href="${waUrl}" target="_blank" class="btn-gold" style="background-color: #25d366; border-color: #25d366; color: white; display: inline-flex; align-items: center; justify-content: center; gap: 0.8rem; width: 100%;">
+                                <i class="fa-brands fa-whatsapp" style="font-size: 1.25rem;"></i> Direct WhatsApp Checkout
+                            </a>
+                        </div>
+                    `;
+                }
+
+                mainLayout.style.gridTemplateColumns = "1fr";
+                mainLayout.innerHTML = `
+                    <div style="max-width: 650px; margin: 0 auto; background-color: var(--color-bg-white); border: 1px solid var(--color-border); padding: 4rem 3rem; text-align: center; box-shadow: var(--shadow-luxury);">
+                        <div style="color: #10b981; font-size: 4rem; margin-bottom: 1.5rem;">
+                            <i class="fa-solid fa-circle-check"></i>
+                        </div>
+                        <h2 style="font-family: var(--font-serif); font-size: 2rem; text-transform: uppercase; margin-bottom: 0.5rem;">Order Confirmed</h2>
+                        <p style="color: var(--color-text-muted); margin-bottom: 2rem;">Thank you for shopping with AURUM. Your purchase receipt has been processed.</p>
+                        
+                        ${waActionHTML}
+
+                        <!-- Receipt Box -->
+                        <div style="border-top: 1px solid var(--color-border); border-bottom: 1px solid var(--color-border); padding: 2rem 0; margin-bottom: 2.5rem; text-align: left;">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                                <span style="font-weight: 500; color: var(--color-text-muted);">Order Reference ID:</span>
+                                <span style="font-weight: 600; color: var(--color-dark);">${order.id}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                                <span style="font-weight: 500; color: var(--color-text-muted);">Estimated Delivery:</span>
+                                <span style="font-weight: 600; color: var(--color-gold-muted);">4 to 6 business days</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.8rem; font-size: 0.9rem;">
+                                <span style="font-weight: 500; color: var(--color-text-muted);">Payment Method:</span>
+                                <span>${order.paymentMethod}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 0.9rem;">
+                                <span style="font-weight: 500; color: var(--color-text-muted);">Shipping To:</span>
+                                <span style="text-align: right;">${order.customerName}<br>${order.address}<br>${order.city}, ${order.state} - ${order.zip}</span>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; font-size: 1.1rem; font-weight: 600; border-top: 1px solid var(--color-border); margin-top: 1.5rem; padding-top: 1rem;">
+                                <span>Total Paid</span>
+                                <span style="color: var(--color-gold);">$${order.total.toLocaleString()}</span>
+                            </div>
+                        </div>
+
+                        <div style="display: flex; gap: 1rem; justify-content: center;">
+                            <a href="shop.html" class="btn-gold" style="padding: 1rem 2rem;">Continue Shopping</a>
+                            <button onclick="window.print()" class="btn-outline" style="color: var(--color-dark); border-color: var(--color-dark); padding: 1rem 2rem;">
+                                <i class="fa-solid fa-print" style="margin-right: 0.5rem;"></i> Print Receipt
+                            </button>
+                        </div>
+                    </div>
+                `;
+                
+                // Scroll page back to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }
+
+            // Initialize
+            loadCheckoutData();
+        });
+    </script>
+</body>
+</html>

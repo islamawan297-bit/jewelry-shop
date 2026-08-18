@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" id="meta-desc" content="Shop fine handcrafted luxury jewelry at AURUM. Explore custom designs, diamonds, gold, and sapphire details.">
+    <title id="page-title">Product Details | AURUM Fine Jewelry</title>
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Sticky Header -->
+    <header>
+        <div class="header-container">
+            <button class="mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+
+            <div class="logo">
+                <a href="index.html">AURUM<span>.</span></a>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Collections</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="admin.html" class="nav-link">Admin Portal</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="nav-action-btn" id="search-toggle" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="nav-action-btn" id="cart-toggle" aria-label="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="search-container" id="search-container">
+            <div class="search-inner">
+                <input type="text" class="search-input" id="search-input" placeholder="Search the collection...">
+                <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="section" id="product-detail-container">
+        <!-- Rendered dynamically by JS -->
+        <div style="text-align: center; padding: 5rem 0; color: var(--color-text-muted);">
+            <i class="fa-solid fa-spinner spinner" style="font-size: 2rem;"></i>
+            <p>Loading piece detail...</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-about">
+                <div class="footer-logo">AURUM<span>.</span></div>
+                <p>Curators of exceptional fine diamonds, luxury gold, and custom gemstones since 1998.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-widget-title">Collections</h4>
+                <ul class="footer-links">
+                    <li><a href="shop.html?category=Rings">Solitaire Rings</a></li>
+                    <li><a href="shop.html?category=Necklaces">Gold Necklaces</a></li>
+                    <li><a href="shop.html?category=Earrings">Fine Earrings</a></li>
+                    <li><a href="shop.html?category=Bracelets">Luxury Bracelets</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-widget-title">Information</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                    <li><a href="DEPLOYMENT.md">Hosting Guide</a></li>
+                    <li><a href="admin.html">Admin Portal</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-widget-title">Contact</h4>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>102 Elite Avenue, Diamond District,<br>Mumbai, MH 400051</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 22 8765 4321</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>concierge@aurumjewelry.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-copy">&copy; 2026 AURUM Fine Jewelry. All Rights Reserved.</div>
+                <div class="footer-payments">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-cc-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Database and App Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+
+    <!-- Detail Rendering Controller Script -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const urlParams = new URLSearchParams(window.location.search);
+            const productId = urlParams.get("id");
+            const container = document.getElementById("product-detail-container");
+
+            let selectedRating = 5; // Default review rating selection
+
+            function loadProductPage() {
+                if (!productId) {
+                    renderNotFound();
+                    return;
+                }
+
+                const product = window.JewelryDB.getProductById(productId);
+                if (!product) {
+                    renderNotFound();
+                    return;
+                }
+
+                // 1. Update SEO Meta tags dynamically
+                document.getElementById("page-title").textContent = `${product.name} | AURUM Fine Jewelry`;
+                const metaDesc = document.getElementById("meta-desc");
+                if (metaDesc) {
+                    metaDesc.setAttribute("content", `Shop ${product.name} at AURUM. ${product.description.slice(0, 150)}...`);
+                }
+
+                // 2. Render Page Layout
+                const reviews = window.JewelryDB.getReviewsByProduct(product.id);
+                
+                // Stars display HTML generator
+                function getStarsHTML(rating) {
+                    const fullStars = Math.floor(rating);
+                    const halfStar = rating % 1 >= 0.5 ? 1 : 0;
+                    const emptyStars = 5 - fullStars - halfStar;
+                    let html = "";
+                    for(let i=0; i<fullStars; i++) html += '<i class="fa-solid fa-star"></i>';
+                    if(halfStar) html += '<i class="fa-solid fa-star-half-stroke"></i>';
+                    for(let i=0; i<emptyStars; i++) html += '<i class="fa-regular fa-star"></i>';
+                    return html;
+                }
+
+                const metalOptions = product.metals.map(m => `<option value="${m}">${m}</option>`).join("");
+                const sizeOptions = product.sizes.map(s => `<option value="${s}">${s}</option>`).join("");
+
+                const specsRows = Object.entries(product.details).map(([key, val]) => `
+                    <tr>
+                        <td>${key}</td>
+                        <td>${val}</td>
+                    </tr>
+                `).join("");
+
+                const thumbnailHTML = product.images.length > 1 
+                    ? `<div class="product-gallery-thumbs">
+                        ${product.images.map((img, idx) => `
+                            <div class="gallery-thumb ${idx === 0 ? 'active' : ''}" data-index="${idx}">
+                                <img src="${img}" alt="${product.name} - Angle ${idx + 1}">
+                            </div>
+                        `).join("")}
+                       </div>`
+                    : '';
+
+                container.innerHTML = `
+                    <!-- Breadcrumbs -->
+                    <div class="product-breadcrumb">
+                        <a href="index.html">Home</a> &nbsp;&gt;&nbsp; 
+                        <a href="shop.html">Collections</a> &nbsp;&gt;&nbsp; 
+                        <a href="shop.html?category=${product.category}">${product.category}</a> &nbsp;&gt;&nbsp; 
+                        <span>${product.name}</span>
+                    </div>
+
+                    <!-- Dynamic Layout Grid -->
+                    <div class="product-detail-layout">
+                        <!-- Left: Image Gallery -->
+                        <div class="product-gallery">
+                            <div class="product-gallery-main" id="gallery-main-container">
+                                <img src="${product.images[0]}" alt="${product.name}" class="gallery-main-img" id="gallery-main-img">
+                            </div>
+                            ${thumbnailHTML}
+                        </div>
+
+                        <!-- Right: Meta Details -->
+                        <div class="product-meta-details">
+                            <h1 class="product-detail-title">${product.name}</h1>
+                            <div class="product-detail-rating">
+                                ${getStarsHTML(product.rating)}
+                                <span class="rating-count">(${product.reviewCount} customer reviews)</span>
+                            </div>
+                            <div class="product-detail-price" id="detail-price-box">
+                                ${product.isSale 
+                                    ? `<span class="product-card-old-price" style="font-size: 1.25rem;">$${product.originalPrice.toLocaleString()}</span>
+                                       <span class="product-card-sale-price">$${product.price.toLocaleString()}</span>`
+                                    : `$${product.price.toLocaleString()}`
+                                }
+                            </div>
+                            <p class="product-detail-desc">${product.description}</p>
+
+                            <!-- Option Selectors -->
+                            <div class="product-options">
+                                <div class="option-group">
+                                    <label class="option-label" for="metal-select">Select Metal Finish</label>
+                                    <select class="option-select" id="metal-select">
+                                        ${metalOptions}
+                                    </select>
+                                </div>
+                                <div class="option-group">
+                                    <label class="option-label" for="size-select">Select Size / Length</label>
+                                    <select class="option-select" id="size-select">
+                                        ${sizeOptions}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <!-- Quantity and Actions -->
+                            <div class="product-detail-qty-box">
+                                <span class="option-label">Quantity</span>
+                                <div class="product-detail-qty">
+                                    <button class="detail-qty-btn" id="qty-dec">-</button>
+                                    <input type="text" class="qty-input" id="qty-input" value="1" readonly>
+                                    <button class="detail-qty-btn" id="qty-inc">+</button>
+                                </div>
+                            </div>
+
+                            <div class="detail-actions">
+                                <button class="btn-gold" id="add-to-cart-btn">Add to Bag</button>
+                                <button class="btn-outline" id="buy-now-btn" style="color: var(--color-dark); border-color: var(--color-dark);">Buy It Now</button>
+                            </div>
+
+                            <!-- Accordions Specifications -->
+                            <div class="specs-accordion">
+                                <div class="accordion-item active">
+                                    <div class="accordion-header">
+                                        <span>Specifications</span>
+                                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                                    </div>
+                                    <div class="accordion-body" style="max-height: 500px;">
+                                        <div class="accordion-content">
+                                            <table class="specs-table">
+                                                <tbody>
+                                                    ${specsRows}
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="accordion-item">
+                                    <div class="accordion-header">
+                                        <span>Shipping & Returns</span>
+                                        <i class="fa-solid fa-chevron-down accordion-icon"></i>
+                                    </div>
+                                    <div class="accordion-body">
+                                        <div class="accordion-content">
+                                            <p style="margin-bottom: 0.8rem;">Every order is hand-packaged in our signature velvet-lined wood presentation box and shipped fully secured and insured. A signature is required upon delivery for absolute safety.</p>
+                                            <p>• Complimentary Shipping: Orders above $1,500.<br>• Secure Ground Shipping: $15.00.<br>• Returns: Complimentary 30-day return policy for unused pieces in original tags.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Reviews Module -->
+                    <div class="reviews-section">
+                        <h2 style="font-family: var(--font-serif); font-size: 1.5rem; text-transform: uppercase; margin-bottom: 2rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">Customer Reviews</h2>
+                        
+                        <div class="reviews-summary" id="reviews-summary-box">
+                            <!-- Render reviews statistics dynamically -->
+                        </div>
+
+                        <div class="review-list" id="product-reviews-list">
+                            <!-- List of customer reviews rendered dynamically -->
+                        </div>
+
+                        <!-- Add Review Form -->
+                        <div class="review-form-box">
+                            <h3 class="review-form-title">Write a Review</h3>
+                            <form id="review-submission-form">
+                                <div class="form-grid">
+                                    <div class="form-group">
+                                        <label for="rev-name">Your Name *</label>
+                                        <input type="text" class="form-control" id="rev-name" placeholder="E.g. Katherine H." required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label>Rating *</label>
+                                        <div class="star-selector" id="rev-star-selector">
+                                            <i class="fa-solid fa-star active" data-value="1"></i>
+                                            <i class="fa-solid fa-star active" data-value="2"></i>
+                                            <i class="fa-solid fa-star active" data-value="3"></i>
+                                            <i class="fa-solid fa-star active" data-value="4"></i>
+                                            <i class="fa-solid fa-star active" data-value="5"></i>
+                                        </div>
+                                    </div>
+                                    <div class="form-group-full form-group">
+                                        <label for="rev-title">Review Title *</label>
+                                        <input type="text" class="form-control" id="rev-title" placeholder="Summarize your experience..." required>
+                                    </div>
+                                    <div class="form-group-full form-group">
+                                        <label for="rev-comment">Review Details *</label>
+                                        <textarea class="form-control" id="rev-comment" rows="5" placeholder="Share your experience with the craftsmanship, sizing, and design..." required style="resize: vertical;"></textarea>
+                                    </div>
+                                    <div class="form-group-full">
+                                        <button type="submit" class="btn-gold" style="margin-top: 1rem;">Submit Review</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Related Products Section -->
+                    <div class="reviews-section" style="margin-top: 6rem;">
+                        <h2 style="font-family: var(--font-serif); font-size: 1.5rem; text-transform: uppercase; margin-bottom: 2rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem; text-align: center;">Related Masterpieces</h2>
+                        <div class="product-grid" id="related-products-grid">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                `;
+
+                // --- ATTACH LAYOUT LOGIC ---
+                
+                // Photo Gallery Thumbnails switcher
+                const mainImg = document.getElementById("gallery-main-img");
+                const thumbs = document.querySelectorAll(".gallery-thumb");
+                thumbs.forEach(thumb => {
+                    thumb.addEventListener("click", () => {
+                        thumbs.forEach(t => t.classList.remove("active"));
+                        thumb.classList.add("active");
+                        const idx = parseInt(thumb.getAttribute("data-index"));
+                        mainImg.src = product.images[idx];
+                    });
+                });
+
+                // Zoom effect on main image hover
+                const mainContainer = document.getElementById("gallery-main-container");
+                if (mainContainer) {
+                    mainContainer.addEventListener("mousemove", (e) => {
+                        const { left, top, width, height } = mainContainer.getBoundingClientRect();
+                        const x = ((e.clientX - left) / width) * 100;
+                        const y = ((e.clientY - top) / height) * 100;
+                        mainImg.style.transformOrigin = `${x}% ${y}%`;
+                        mainImg.style.transform = "scale(1.5)";
+                    });
+                    
+                    mainContainer.addEventListener("mouseleave", () => {
+                        mainImg.style.transform = "scale(1)";
+                    });
+                }
+
+                // Quantity counter click hooks
+                const qtyInput = document.getElementById("qty-input");
+                document.getElementById("qty-inc").addEventListener("click", () => {
+                    qtyInput.value = parseInt(qtyInput.value) + 1;
+                });
+                document.getElementById("qty-dec").addEventListener("click", () => {
+                    const val = parseInt(qtyInput.value);
+                    if (val > 1) qtyInput.value = val - 1;
+                });
+
+                // Add to Cart
+                const metalSelect = document.getElementById("metal-select");
+                const sizeSelect = document.getElementById("size-select");
+                
+                document.getElementById("add-to-cart-btn").addEventListener("click", () => {
+                    const qty = parseInt(qtyInput.value);
+                    const metal = metalSelect.value;
+                    const size = sizeSelect.value;
+                    window.CartAPI.addToCart(product.id, qty, metal, size);
+                });
+
+                // Buy Now
+                document.getElementById("buy-now-btn").addEventListener("click", () => {
+                    const qty = parseInt(qtyInput.value);
+                    const metal = metalSelect.value;
+                    const size = sizeSelect.value;
+                    window.CartAPI.addToCart(product.id, qty, metal, size);
+                    setTimeout(() => {
+                        window.location.href = "checkout.html";
+                    }, 500);
+                });
+
+                // Accordions
+                const accordionHeaders = document.querySelectorAll(".accordion-header");
+                accordionHeaders.forEach(header => {
+                    header.addEventListener("click", () => {
+                        const item = header.parentElement;
+                        const body = item.querySelector(".accordion-body");
+                        const isActive = item.classList.contains("active");
+
+                        // Close other accordions in this specifications group
+                        document.querySelectorAll(".accordion-item").forEach(el => {
+                            el.classList.remove("active");
+                            el.querySelector(".accordion-body").style.maxHeight = "0";
+                        });
+
+                        if (!isActive) {
+                            item.classList.add("active");
+                            body.style.maxHeight = body.scrollHeight + "px";
+                        }
+                    });
+                });
+
+                // Load reviews modules
+                renderReviewsListAndStats(product.id);
+
+                // Star selector mechanism in Review Form
+                const formStars = document.querySelectorAll("#rev-star-selector i");
+                formStars.forEach(star => {
+                    star.addEventListener("click", () => {
+                        const val = parseInt(star.getAttribute("data-value"));
+                        selectedRating = val;
+                        
+                        formStars.forEach(s => {
+                            const sVal = parseInt(s.getAttribute("data-value"));
+                            if (sVal <= val) {
+                                s.classList.replace("fa-regular", "fa-solid");
+                                s.classList.add("active");
+                            } else {
+                                s.classList.replace("fa-solid", "fa-regular");
+                                s.classList.remove("active");
+                            }
+                        });
+                    });
+                });
+
+                // Submit review hook
+                const revForm = document.getElementById("review-submission-form");
+                revForm.addEventListener("submit", (e) => {
+                    e.preventDefault();
+                    
+                    const user = document.getElementById("rev-name").value.trim();
+                    const title = document.getElementById("rev-title").value.trim();
+                    const comment = document.getElementById("rev-comment").value.trim();
+
+                    window.JewelryDB.addReview(product.id, {
+                        user: user,
+                        rating: selectedRating,
+                        title: title,
+                        comment: comment
+                    });
+
+                    window.AppUI.showToast("Review submitted successfully! Thank you.", "success");
+                    revForm.reset();
+                    // Reset stars selector to 5 stars
+                    selectedRating = 5;
+                    formStars.forEach(s => {
+                        s.classList.replace("fa-regular", "fa-solid");
+                        s.classList.add("active");
+                    });
+
+                    // Re-render product meta, stars, and reviews
+                    loadProductPage();
+                });
+
+                // Render related pieces
+                renderRelatedProducts(product);
+            }
+
+            function renderNotFound() {
+                container.innerHTML = `
+                    <div style="text-align: center; padding: 6rem 1.5rem;">
+                        <i class="fa-solid fa-gem" style="font-size: 3rem; color: var(--color-gold-muted); margin-bottom: 1.5rem; animation: spin 4s linear infinite;"></i>
+                        <h2 style="margin-bottom: 1rem;">Product Not Found</h2>
+                        <p style="color: var(--color-text-muted); margin-bottom: 2rem;">The jewelry item you are looking for does not exist or has been removed from our catalog.</p>
+                        <a href="shop.html" class="btn-gold">Browse Collections</a>
+                    </div>
+                `;
+            }
+
+            function renderReviewsListAndStats(prodId) {
+                const summaryBox = document.getElementById("reviews-summary-box");
+                const listEl = document.getElementById("product-reviews-list");
+                
+                const reviews = window.JewelryDB.getReviewsByProduct(prodId);
+                
+                // Stars HTML helper
+                function getStarsHTML(rating) {
+                    let html = "";
+                    for(let i=1; i<=5; i++) {
+                        if (i <= rating) html += '<i class="fa-solid fa-star"></i>';
+                        else html += '<i class="fa-regular fa-star"></i>';
+                    }
+                    return html;
+                }
+
+                if (reviews.length === 0) {
+                    summaryBox.innerHTML = `
+                        <div style="text-align: center; width: 100%; color: var(--color-text-muted);">
+                            <p style="font-size: 1rem; margin-bottom: 0.5rem;">No reviews yet.</p>
+                            <p style="font-size: 0.85rem;">Be the first to share your thoughts on this design.</p>
+                        </div>
+                    `;
+                    listEl.innerHTML = "";
+                    return;
+                }
+
+                // 1. Calculate stats distribution
+                const avgRating = parseFloat((reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1));
+                const counts = { 5:0, 4:0, 3:0, 2:0, 1:0 };
+                reviews.forEach(r => { if (counts[r.rating] !== undefined) counts[r.rating]++; });
+
+                const barsHTML = [5, 4, 3, 2, 1].map(stars => {
+                    const count = counts[stars];
+                    const percent = reviews.length > 0 ? (count / reviews.length) * 100 : 0;
+                    return `
+                        <div class="review-stat-row">
+                            <span style="width: 50px;">${stars} stars</span>
+                            <div class="review-stat-bar-bg">
+                                <div class="review-stat-bar-fill" style="width: ${percent}%;"></div>
+                            </div>
+                            <span style="width: 30px; text-align: right;">${count}</span>
+                        </div>
+                    `;
+                }).join("");
+
+                summaryBox.innerHTML = `
+                    <div class="review-avg-rating">
+                        <div class="review-avg-num">${avgRating}</div>
+                        <div class="review-avg-stars">
+                            ${getStarsHTML(Math.round(avgRating))}
+                        </div>
+                        <div class="review-avg-count">Based on ${reviews.length} reviews</div>
+                    </div>
+                    <div class="review-stats-bars">
+                        ${barsHTML}
+                    </div>
+                `;
+
+                // 2. Render reviews list
+                listEl.innerHTML = reviews.map(r => {
+                    const initials = r.user.split(" ").map(w => w[0]).join("").toUpperCase().slice(0, 2);
+                    return `
+                        <div class="review-item">
+                            <div class="review-item-header">
+                                <div class="review-user-info">
+                                    <div class="review-avatar">${initials || "C"}</div>
+                                    <div>
+                                        <div class="review-username">${r.user}</div>
+                                        <div class="review-item-stars">${getStarsHTML(r.rating)}</div>
+                                    </div>
+                                </div>
+                                <span class="review-date">${r.date}</span>
+                            </div>
+                            <h4 class="review-item-title">${r.title}</h4>
+                            <p class="review-item-comment">${r.comment}</p>
+                        </div>
+                    `;
+                }).join("");
+            }
+
+            function renderRelatedProducts(currProduct) {
+                const grid = document.getElementById("related-products-grid");
+                if (!grid) return;
+
+                const products = window.JewelryDB.getProducts();
+                // Filter by same category and exclude self
+                const related = products
+                    .filter(p => p.category === currProduct.category && p.id !== currProduct.id)
+                    .slice(0, 4);
+
+                if (related.length === 0) {
+                    grid.parentElement.style.display = "none";
+                    return;
+                }
+
+                grid.innerHTML = related.map(p => {
+                    const priceHTML = p.isSale 
+                        ? `<span class="product-card-old-price">$${p.originalPrice.toLocaleString()}</span><span class="product-card-sale-price">$${p.price.toLocaleString()}</span>` 
+                        : `<span class="product-card-price">$${p.price.toLocaleString()}</span>`;
+
+                    const saleBadge = p.isSale 
+                        ? `<span class="product-card-badge">Sale</span>` 
+                        : ``;
+
+                    // Generate stars
+                    const fullStars = Math.floor(p.rating);
+                    const halfStar = p.rating % 1 >= 0.5 ? 1 : 0;
+                    const emptyStars = 5 - fullStars - halfStar;
+                    let starHTML = "";
+                    for(let i=0; i<fullStars; i++) starHTML += '<i class="fa-solid fa-star"></i>';
+                    if(halfStar) starHTML += '<i class="fa-solid fa-star-half-stroke"></i>';
+                    for(let i=0; i<emptyStars; i++) starHTML += '<i class="fa-regular fa-star"></i>';
+
+                    return `
+                        <div class="product-card">
+                            ${saleBadge}
+                            <div class="product-img-wrapper" onclick="window.location.href='product.html?id=${p.id}'">
+                                <img src="${p.images[0]}" alt="${p.name}" class="product-card-img">
+                                <div class="product-card-actions">
+                                    <button class="product-action-btn" onclick="event.stopPropagation(); window.location.href='product.html?id=${p.id}'">View Detail</button>
+                                    <button class="product-action-btn" onclick="event.stopPropagation(); CartAPI.addToCart('${p.id}', 1, '${p.metals[0] || 'Standard'}', '${p.sizes[0] || 'Standard'}')">Add to Cart</button>
+                                </div>
+                            </div>
+                            <div class="product-info">
+                                <span class="product-card-cat">${p.category}</span>
+                                <h3 class="product-card-title"><a href="product.html?id=${p.id}">${p.name}</a></h3>
+                                <div class="product-rating">
+                                    ${starHTML}
+                                    <span class="rating-count">(${p.reviewCount})</span>
+                                </div>
+                                <div class="product-price-box">
+                                    ${priceHTML}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }).join("");
+            }
+
+            // Initial load
+            loadProductPage();
+
+            // Re-render when database changes (e.g. from Admin in another tab)
+            window.addEventListener("storage", (e) => {
+                if (e.key === "jewelry_products" || e.key === "jewelry_reviews") {
+                    loadProductPage();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

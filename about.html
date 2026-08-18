@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Learn about AURUM's rich heritage of master craftsmanship, our ethical sourcing of conflict-free diamonds, and our passion for creating premium jewelry.">
+    <title>Our Story & Craftsmanship | AURUM Fine Jewelry</title>
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Sticky Header -->
+    <header>
+        <div class="header-container">
+            <button class="mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+
+            <div class="logo">
+                <a href="index.html">AURUM<span>.</span></a>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Collections</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="admin.html" class="nav-link">Admin Portal</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="nav-action-btn" id="search-toggle" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="nav-action-btn" id="cart-toggle" aria-label="Cart">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span class="cart-badge">0</span>
+                </button>
+            </div>
+        </div>
+
+        <div class="search-container" id="search-container">
+            <div class="search-inner">
+                <input type="text" class="search-input" id="search-input" placeholder="Search the collection...">
+                <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Hero Section -->
+    <section class="about-hero">
+        <div>
+            <p style="font-family: var(--font-italic); font-style: italic; color: var(--color-gold-muted); font-size: 1.5rem; letter-spacing: 0.1em; margin-bottom: 1rem;">Since 1998</p>
+            <h1 class="about-hero-title">Our Heritage</h1>
+        </div>
+    </section>
+
+    <!-- Brand Story Section -->
+    <section class="section">
+        <div class="about-story-row">
+            <div class="about-story-img-wrapper">
+                <img src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=800&auto=format&fit=crop" alt="Finished Diamond Engagement Ring" class="about-story-img">
+            </div>
+            <div class="about-story-content">
+                <p style="color: var(--color-gold); font-family: var(--font-serif); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.85rem; margin-bottom: 0.5rem;">The Dream</p>
+                <h3>Molded from Fire & Gold</h3>
+                <p>AURUM was founded in 1998 with a singular, clear ambition: to create fine jewelry that bridges the gap between classic antiquity and modern, sleek design. What began as a small boutique workshop of three passionate gold smiths in Milan has evolved into a global luxury brand, carrying the spirit of master Italian craftsmanship to jewelry collectors worldwide.</p>
+                <p>We believe that jewelry is more than just personal adornment; it is a repository of memories, a symbol of commitment, and an heirloom designed to pass through generations. This philosophy dictates every line sketched and every stone cut in our private studios.</p>
+                <p>Every piece in our collection is crafted with the highest standards of materials, utilizing 18K solid yellow, rose, and white gold, alongside ethically sourced diamonds of exceptional clarity (VS1-VS2 or better).</p>
+            </div>
+        </div>
+
+        <!-- Craftsmanship Section -->
+        <div class="about-story-row" id="craftsmanship" style="grid-template-columns: 0.9fr 1.1fr; margin-bottom: 0;">
+            <div class="about-story-content" style="order: 2;">
+                <p style="color: var(--color-gold); font-family: var(--font-serif); text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.85rem; margin-bottom: 0.5rem;">Artistry in Details</p>
+                <h3>Exquisite Artisanal Process</h3>
+                <p>Our craftsmanship process is slow, deliberate, and detailed. We reject the standards of mass production, choosing instead to focus on individual creation.</p>
+                <p><strong>1. Hand Sketching:</strong> Our design directors sketch every collection by hand, focusing on form, light play, and ergonomics to ensure rings rest comfortably and pendants drape beautifully.</p>
+                <p><strong>2. Stone Selection:</strong> Our certified gemologists inspect thousands of loose stones, hand-selecting diamonds and sapphires that match perfectly in color matching, cut angles, and luster.</p>
+                <p><strong>3. Micro-Setting:</strong> In our setting rooms, master setters work under micro-magnification to securely claw-set and pave diamonds, maximizing light entry for unmatched sparkle.</p>
+                <p><strong>4. High Polishing:</strong> Each piece undergoes a multi-stage buffing and hand-polishing process, achieving a flawless, mirror-like finish that catches even the lowest ambient light.</p>
+            </div>
+            <div class="about-story-img-wrapper" style="order: 1;">
+                <img src="https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?q=80&w=800&auto=format&fit=crop" alt="Detailed Jewelry Studio Setup" class="about-story-img">
+            </div>
+        </div>
+    </section>
+
+    <!-- Brand Values Section -->
+    <section class="section section-dark">
+        <div class="section-inner">
+            <div class="section-header">
+                <p class="section-subtitle">Our Commitments</p>
+                <h2 class="section-title">Corporate Values</h2>
+            </div>
+
+            <div class="values-grid">
+                <!-- Value 1 -->
+                <div class="value-card" style="background-color: var(--color-dark-accent); border-color: var(--color-border-dark);">
+                    <div class="value-icon"><i class="fa-solid fa-leaf"></i></div>
+                    <h3 class="value-title" style="color: var(--color-light);">100% Ethical Sourcing</h3>
+                    <p class="value-desc" style="color: rgba(255,255,255,0.6);">We adhere strictly to the Kimberley Process, sourcing conflict-free diamonds and recycled gold to reduce ecological impact while protecting mining communities.</p>
+                </div>
+                <!-- Value 2 -->
+                <div class="value-card" style="background-color: var(--color-dark-accent); border-color: var(--color-border-dark);">
+                    <div class="value-icon"><i class="fa-solid fa-gem"></i></div>
+                    <h3 class="value-title" style="color: var(--color-light);">Uncompromising Quality</h3>
+                    <p class="value-desc" style="color: rgba(255,255,255,0.6);">We only employ 18-karat solid gold and diamonds of G-H color and VS clarity or better, offering certified authentication details with every purchase.</p>
+                </div>
+                <!-- Value 3 -->
+                <div class="value-card" style="background-color: var(--color-dark-accent); border-color: var(--color-border-dark);">
+                    <div class="value-icon"><i class="fa-solid fa-gift"></i></div>
+                    <h3 class="value-title" style="color: var(--color-light);">Luxury Signature Box</h3>
+                    <p class="value-desc" style="color: rgba(255,255,255,0.6);">Every creation is packaged in our signature heavy velvet-lined mahogany wood presentation box, making unboxing a timeless ceremony in itself.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-about">
+                <div class="footer-logo">AURUM<span>.</span></div>
+                <p>Curators of exceptional fine diamonds, luxury gold, and custom gemstones since 1998.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-widget-title">Collections</h4>
+                <ul class="footer-links">
+                    <li><a href="shop.html?category=Rings">Solitaire Rings</a></li>
+                    <li><a href="shop.html?category=Necklaces">Gold Necklaces</a></li>
+                    <li><a href="shop.html?category=Earrings">Fine Earrings</a></li>
+                    <li><a href="shop.html?category=Bracelets">Luxury Bracelets</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-widget-title">Information</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                    <li><a href="DEPLOYMENT.md">Hosting Guide</a></li>
+                    <li><a href="admin.html">Admin Portal</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-widget-title">Contact</h4>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>102 Elite Avenue, Diamond District,<br>Mumbai, MH 400051</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 22 8765 4321</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>concierge@aurumjewelry.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-copy">&copy; 2026 AURUM Fine Jewelry. All Rights Reserved.</div>
+                <div class="footer-payments">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-cc-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Database and App Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Admin Portal | AURUM Fine Jewelry</title>
+    
+    <!-- CSS Stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <!-- Sticky Header -->
+    <header>
+        <div class="header-container">
+            <button class="mobile-nav-toggle"><i class="fa-solid fa-bars"></i></button>
+
+            <div class="logo">
+                <a href="index.html">AURUM<span>.</span></a>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="shop.html" class="nav-link">Collections</a>
+                <a href="about.html" class="nav-link">About Us</a>
+                <a href="admin.html" class="nav-link">Admin Portal</a>
+            </nav>
+
+            <div class="nav-actions">
+                <button class="nav-action-btn" id="search-toggle" aria-label="Search"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button class="nav-action-btn" id="cart-toggle" aria-label="Cart"><i class="fa-solid fa-bag-shopping"></i><span class="cart-badge">0</span></button>
+            </div>
+        </div>
+
+        <div class="search-container" id="search-container">
+            <div class="search-inner">
+                <input type="text" class="search-input" id="search-input" placeholder="Search the collection...">
+                <button class="search-close" id="search-close"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Admin Portal Title -->
+    <section class="section" style="padding-bottom: 0;">
+        <div class="section-header" style="text-align: left; margin-bottom: 2rem;">
+            <p class="section-subtitle">Management Console</p>
+            <h1 class="section-title" style="display: block; margin-bottom: 0.5rem;">AURUM Admin Dashboard</h1>
+            <p style="font-size: 0.85rem; color: var(--color-text-muted); font-style: italic;">
+                <i class="fa-solid fa-triangle-exclamation" style="margin-right: 0.3rem;"></i> 
+                Warning: Client-side local storage engine. Modifications apply locally to your browser context.
+            </p>
+        </div>
+    </section>
+
+    <!-- Admin Layout (Sidebar + Tabs Panel) -->
+    <section class="section" style="padding-top: 1rem;">
+        <div class="admin-layout">
+            <!-- Sidebar Navigation -->
+            <aside class="admin-sidebar">
+                <div class="admin-sidebar-header">
+                    <h3 class="admin-sidebar-title">AURUM Concierge</h3>
+                    <span class="admin-sidebar-role">Store Manager</span>
+                </div>
+                <nav class="admin-nav">
+                    <div class="admin-nav-item active" data-tab="dashboard">
+                        <i class="fa-solid fa-chart-line"></i> <span>Dashboard Metrics</span>
+                    </div>
+                    <div class="admin-nav-item" data-tab="products">
+                        <i class="fa-solid fa-gem"></i> <span>Manage Products</span>
+                    </div>
+                    <div class="admin-nav-item" data-tab="orders">
+                        <i class="fa-solid fa-truck-fast"></i> <span>Track Orders</span>
+                    </div>
+                    <div class="admin-nav-item" data-tab="reviews">
+                        <i class="fa-solid fa-comments"></i> <span>Moderate Reviews</span>
+                    </div>
+                </nav>
+            </aside>
+
+            <!-- Admin Content Panel -->
+            <main class="admin-content">
+                
+                <!-- TAB 1: DASHBOARD METRICS -->
+                <div class="admin-tab-content active" id="tab-dashboard">
+                    <div class="admin-header-row">
+                        <h2 class="admin-page-title">Performance Summary</h2>
+                    </div>
+
+                    <!-- Metrics Cards Grid -->
+                    <div class="admin-metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-icon-box"><i class="fa-solid fa-sack-dollar"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-label">Total Revenue</span>
+                                <h4 class="metric-value" id="metric-revenue">$0.00</h4>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon-box"><i class="fa-solid fa-receipt"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-label">Total Orders</span>
+                                <h4 class="metric-value" id="metric-orders">0</h4>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon-box"><i class="fa-solid fa-boxes-stacked"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-label">Total Catalog</span>
+                                <h4 class="metric-value" id="metric-products">0</h4>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-icon-box"><i class="fa-solid fa-star"></i></div>
+                            <div class="metric-info">
+                                <span class="metric-label">Total Reviews</span>
+                                <h4 class="metric-value" id="metric-reviews">0</h4>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Recent Activity Section -->
+                    <div style="margin-top: 3rem;">
+                        <h3 style="font-family: var(--font-serif); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 1.5rem; border-bottom: 1px solid var(--color-border); padding-bottom: 0.5rem;">Recent Sales Orders</h3>
+                        <div class="admin-table-wrapper">
+                            <table class="admin-table" id="dashboard-recent-orders-table">
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Customer</th>
+                                        <th>Date</th>
+                                        <th>Total Paid</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- Dynamic rows -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TAB 2: MANAGE PRODUCTS -->
+                <div class="admin-tab-content" id="tab-products">
+                    <div class="admin-header-row">
+                        <h2 class="admin-page-title">Catalog Inventory</h2>
+                        <button class="btn-gold" id="admin-add-product-btn" style="padding: 0.6rem 1.25rem; font-size: 0.75rem;"><i class="fa-solid fa-plus" style="margin-right: 0.3rem;"></i> Add New Piece</button>
+                    </div>
+
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table" id="admin-products-table">
+                            <thead>
+                                <tr>
+                                    <th>Piece Detail</th>
+                                    <th>Category</th>
+                                    <th>Price</th>
+                                    <th>Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 3: TRACK ORDERS -->
+                <div class="admin-tab-content" id="tab-orders">
+                    <div class="admin-header-row">
+                        <h2 class="admin-page-title">Sales Order Tracking</h2>
+                    </div>
+
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table" id="admin-orders-table">
+                            <thead>
+                                <tr>
+                                    <th>Order Reference</th>
+                                    <th>Customer Info</th>
+                                    <th>Date Placed</th>
+                                    <th>Order Value</th>
+                                    <th>Payment Type</th>
+                                    <th>Shipping Status</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- TAB 4: MODERATE REVIEWS -->
+                <div class="admin-tab-content" id="tab-reviews">
+                    <div class="admin-header-row">
+                        <h2 class="admin-page-title">Customer Feedback Moderation</h2>
+                    </div>
+
+                    <div class="admin-table-wrapper">
+                        <table class="admin-table" id="admin-reviews-table">
+                            <thead>
+                                <tr>
+                                    <th>Reviewer</th>
+                                    <th>Product ID</th>
+                                    <th>Rating</th>
+                                    <th>Title & Feedback</th>
+                                    <th>Date</th>
+                                    <th style="text-align: right;">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dynamic rows -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </section>
+
+    <!-- Modal Form: Add / Edit Product -->
+    <div class="admin-modal" id="product-form-modal">
+        <div class="admin-modal-box">
+            <button class="admin-modal-close" id="product-modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="admin-modal-title" id="product-modal-title">Add New Jewelry Design</h2>
+            
+            <form id="product-crud-form">
+                <input type="hidden" id="crud-id">
+                
+                <div class="form-grid">
+                    <!-- Title -->
+                    <div class="form-group form-group-full">
+                        <label for="crud-name">Product Name *</label>
+                        <input type="text" class="form-control" id="crud-name" required placeholder="E.g. Sapphire Halo Ring">
+                    </div>
+
+                    <!-- Category -->
+                    <div class="form-group">
+                        <label for="crud-category">Category *</label>
+                        <select class="form-control" id="crud-category" required style="background-color: transparent;">
+                            <option value="Rings">Rings</option>
+                            <option value="Necklaces">Necklaces</option>
+                            <option value="Earrings">Earrings</option>
+                            <option value="Bracelets">Bracelets</option>
+                            <option value="Sets">Sets</option>
+                        </select>
+                    </div>
+
+                    <!-- Price -->
+                    <div class="form-group">
+                        <label for="crud-price">Price (USD) *</label>
+                        <input type="number" class="form-control" id="crud-price" required min="0" placeholder="1200">
+                    </div>
+
+                    <!-- Sale Option -->
+                    <div class="form-group">
+                        <label for="crud-original-price">Original Price (Leave empty if not on sale)</label>
+                        <input type="number" class="form-control" id="crud-original-price" min="0" placeholder="1500">
+                    </div>
+
+                    <!-- In Stock Check -->
+                    <div class="form-group" style="display: flex; flex-direction: row; align-items: center; gap: 0.8rem; margin-top: 1.5rem;">
+                        <input type="checkbox" id="crud-instock" checked style="accent-color: var(--color-gold); width: 18px; height: 18px; cursor: pointer;">
+                        <label for="crud-instock" style="margin-bottom: 0; cursor: pointer; text-transform: uppercase; font-size: 0.75rem; font-weight: 600;">Product In Stock</label>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="form-group form-group-full">
+                        <label for="crud-desc">Description *</label>
+                        <textarea class="form-control" id="crud-desc" required rows="4" placeholder="Beautiful copywriting description..." style="resize: vertical;"></textarea>
+                    </div>
+
+                    <!-- Images -->
+                    <div class="form-group form-group-full">
+                        <label for="crud-images">Images URLs (Comma-separated, start with primary image) *</label>
+                        <input type="text" class="form-control" id="crud-images" required placeholder="https://unsplash.com/url1, https://unsplash.com/url2">
+                        <span style="font-size: 0.7rem; color: var(--color-text-muted);">Ensure valid absolute URLs (Unsplash links or online hosts).</span>
+                    </div>
+
+                    <!-- Metals -->
+                    <div class="form-group">
+                        <label for="crud-metals">Metals Offered (Comma-separated) *</label>
+                        <input type="text" class="form-control" id="crud-metals" required placeholder="18K Yellow Gold, 18K White Gold" value="18K Yellow Gold, 18K White Gold, 18K Rose Gold">
+                    </div>
+
+                    <!-- Sizes -->
+                    <div class="form-group">
+                        <label for="crud-sizes">Sizes / Lengths (Comma-separated) *</label>
+                        <input type="text" class="form-control" id="crud-sizes" required placeholder="5, 6, 7, 8, 9" value="5, 6, 7, 8, 9">
+                    </div>
+
+                    <!-- Details Specifications -->
+                    <div class="form-group form-group-full">
+                        <label for="crud-details">Specifications / Stone Details (Format: Label: Value, Label: Value) *</label>
+                        <input type="text" class="form-control" id="crud-details" required placeholder="Material: 18K Gold, Main Stone: Natural Brilliant Diamond, Carat: 0.8 Carats" value="Material: 18K Gold, Main Stone: Round Diamond, Carat: 0.75 TCW">
+                    </div>
+
+                    <div class="form-group-full" style="display: flex; gap: 1rem; margin-top: 1rem;">
+                        <button type="submit" class="btn-gold" style="flex: 1;">Save Jewelry Design</button>
+                        <button type="button" class="btn-outline" id="product-modal-cancel" style="color: var(--color-dark); border-color: var(--color-dark); flex: 1;">Cancel</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal View: Order Detailed Billing -->
+    <div class="admin-modal" id="order-details-modal">
+        <div class="admin-modal-box" style="width: 500px;">
+            <button class="admin-modal-close" id="order-modal-close"><i class="fa-solid fa-xmark"></i></button>
+            <h2 class="admin-modal-title" style="margin-bottom: 1.5rem;">Order Detailed Information</h2>
+            
+            <div id="order-detail-modal-body">
+                <!-- Dynamically loaded order details -->
+            </div>
+            
+            <button class="btn-gold" id="order-modal-ok-btn" style="width: 100%; margin-top: 1.5rem; padding: 0.8rem 1rem; font-size: 0.75rem;">Done</button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="footer-about">
+                <div class="footer-logo">AURUM<span>.</span></div>
+                <p>Curators of exceptional fine diamonds, luxury gold, and custom gemstones since 1998.</p>
+                <div class="footer-socials">
+                    <a href="#" class="footer-social-link" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+                    <a href="#" class="footer-social-link" aria-label="Pinterest"><i class="fa-brands fa-pinterest-p"></i></a>
+                </div>
+            </div>
+            
+            <div>
+                <h4 class="footer-widget-title">Collections</h4>
+                <ul class="footer-links">
+                    <li><a href="shop.html?category=Rings">Solitaire Rings</a></li>
+                    <li><a href="shop.html?category=Necklaces">Gold Necklaces</a></li>
+                    <li><a href="shop.html?category=Earrings">Fine Earrings</a></li>
+                    <li><a href="shop.html?category=Bracelets">Luxury Bracelets</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-widget-title">Information</h4>
+                <ul class="footer-links">
+                    <li><a href="about.html">Our Story</a></li>
+                    <li><a href="about.html#craftsmanship">Craftsmanship</a></li>
+                    <li><a href="DEPLOYMENT.md">Hosting Guide</a></li>
+                    <li><a href="admin.html">Admin Portal</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="footer-widget-title">Contact</h4>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <span>102 Elite Avenue, Diamond District,<br>Mumbai, MH 400051</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+91 22 8765 4321</span>
+                </div>
+                <div class="footer-contact-item">
+                    <i class="fa-solid fa-envelope"></i>
+                    <span>concierge@aurumjewelry.com</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-container">
+                <div class="footer-copy">&copy; 2026 AURUM Fine Jewelry. All Rights Reserved.</div>
+                <div class="footer-payments">
+                    <i class="fa-brands fa-cc-visa"></i>
+                    <i class="fa-brands fa-cc-mastercard"></i>
+                    <i class="fa-brands fa-cc-apple-pay"></i>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Database and App Scripts -->
+    <script src="js/products.js"></script>
+    <script src="js/app.js"></script>
+    <!-- Admin Management Core Script -->
+    <script src="js/admin.js"></script>
+</body>
+</html>

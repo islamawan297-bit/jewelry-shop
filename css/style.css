@@ -3013,6 +3013,11 @@ footer {
     grid-template-columns: repeat(3, 1fr);
 }
 
+/* Empty cart layout helper */
+.cart-layout.empty {
+    grid-template-columns: 1fr;
+}
+
 /* Media Query overrides */
 @media (max-width: 1200px) {
     .shop-grid {
@@ -3027,6 +3032,10 @@ footer {
     }
     .about-story-row-reverse {
         grid-template-columns: 1fr;
+    }
+    .logo a {
+        font-size: 1.3rem;
+        letter-spacing: 0.15em;
     }
 }
 
@@ -3046,5 +3055,12 @@ footer {
     }
     .hero-control-next {
         right: 0.5rem;
+    }
+    .logo a {
+        font-size: 1.1rem;
+        letter-spacing: 0.1em;
+    }
+    .header-container {
+        padding: 0.8rem 1rem;
     }
 }
